@@ -23,8 +23,8 @@ function render(props = {}) {
     window.__POWERED_BY_QIANKUN__
   );
   router = new VueRouter({
-    // base: window.__POWERED_BY_QIANKUN__ ? "/app2/" : "/",
-    base: "/",
+    base: window.__POWERED_BY_QIANKUN__ ? "/app2" : "/",
+    // base: "/app2",
     mode: "history",
     routes,
   });

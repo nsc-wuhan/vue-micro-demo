@@ -7,6 +7,7 @@ export default [
   {
     path: "/",
     component: Index,
+    children: [],
   },
   {
     path: "/login",
