@@ -22,10 +22,7 @@ let instance = null;
 function render(props = {}) {
   const { container } = props;
   console.log("vue子应用props", props);
-  console.log(
-    "vue window.__POWERED_BY_QIANKUN__",
-    window.__POWERED_BY_QIANKUN__
-  );
+  console.log("appName", props.appName);
   router = new VueRouter({
     base: window.__POWERED_BY_QIANKUN__ ? "/app2" : "/",
     mode: "history",
@@ -45,14 +42,14 @@ if (!window.__POWERED_BY_QIANKUN__) {
 }
 
 export async function bootstrap() {
-  console.log("[vue] vue app bootstraped");
+  // console.log("[vue] vue app bootstraped");
 }
 export async function mount(props) {
-  console.log("[vue] props from main framework", props);
+  // console.log("[vue] props from main framework", props);
   props.onGlobalStateChange((state, prev) => {
+    console.log("prev", prev);
     console.log("主应用传过来的数据", state);
     Vue.prototype.HISTORY = state.history;
-    Vue.prototype.Parent = state.otherData;
   }, true);
 
   render(props);
