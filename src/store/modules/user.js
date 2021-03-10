@@ -8,20 +8,25 @@ const mutations = {
     state.age = payload;
   },
   resetState(state, payload) {},
+  updateParentData(state, payload) {
+    console.log("run updateParentData", payload);
+    state.parentData = payload;
+  },
 };
 
 const actions = {
   logout(context, payload) {
-    console.log('context', context);
-    context.commit('resetState');
+    console.log("context", context);
+    context.commit("resetState");
   },
 };
 
 export const initState = () => ({
-  name: 'kevin',
+  name: "kevin",
   age: 28,
-  company: 'nsc',
-  id: '0001',
+  company: "nsc",
+  id: "0001",
+  parentData: {},
 });
 
 export default {

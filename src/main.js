@@ -25,7 +25,7 @@ function render(props = {}) {
   console.log("appName", props.appName);
   router = new VueRouter({
     base: window.__POWERED_BY_QIANKUN__ ? "/app2" : "/",
-    mode: "history",
+    mode: "hash",
     routes,
   });
 
@@ -46,6 +46,11 @@ export async function bootstrap() {
 }
 export async function mount(props) {
   // console.log("[vue] props from main framework", props);
+  Vue.prototype.MICRO_HOOKS = {
+    onGlobalStateChange: props.onGlobalStateChange,
+    setGlobalState: props.setGlobalState,
+  };
+
   props.onGlobalStateChange((state, prev) => {
     console.log("prev", prev);
     console.log("主应用传过来的数据", state);
@@ -54,6 +59,7 @@ export async function mount(props) {
 
   render(props);
 }
+
 export async function unmount() {
   instance.$destroy();
   instance.$el.innerHTML = "";
