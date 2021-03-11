@@ -1,6 +1,7 @@
 <script>
 import Test from "../components/test";
 import { mapActions, mapState, mapMutations } from "vuex";
+import { getRouterInstance } from "../main";
 export default {
   name: "Home",
   components: {
@@ -19,19 +20,23 @@ export default {
   methods: {
     jump() {
       this.visible = true;
+      console.log("router", getRouterInstance());
       console.log("pdata", this.parentData);
     },
     editParentData() {
       // this.updateParentData({ title: "just title" });
+      this.visible = false;
+
       this.MICRO_HOOKS.setGlobalState({
         globalData: { title: "被子应用修改后的标题" },
+        microRouter: { app2: { jump: this.jump } },
       });
-      this.visible = false;
     },
     ...mapMutations("userModule", ["updateParentData"]),
   },
   mounted() {
     console.log("111", this.MICRO_HOOKS);
+    // this.$router.push("/test");
     this.MICRO_HOOKS.onGlobalStateChange((state, prev) => {
       console.log("主应用传过来的数据222", state);
       this.updateParentData(state.globalData);

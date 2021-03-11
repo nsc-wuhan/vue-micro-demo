@@ -15,20 +15,26 @@ Vue.config.productionTip = false;
 // });
 import VueRouter from "vue-router";
 import routes from "./router/config.js";
+
 Vue.use(VueRouter);
 Vue.use(ElementUI);
+
 let router = null;
 let instance = null;
+
+export const getRouterInstance = () => {
+  return router;
+};
 function render(props = {}) {
   const { container } = props;
   console.log("vue子应用props", props);
   console.log("appName", props.appName);
+
   router = new VueRouter({
     base: window.__POWERED_BY_QIANKUN__ ? "/app2" : "/",
     mode: "hash",
     routes,
   });
-
   instance = new Vue({
     router,
     store,
@@ -54,6 +60,7 @@ export async function mount(props) {
   props.onGlobalStateChange((state, prev) => {
     console.log("prev", prev);
     console.log("主应用传过来的数据", state);
+
     Vue.prototype.HISTORY = state.history;
   }, true);
 

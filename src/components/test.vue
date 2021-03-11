@@ -45,6 +45,7 @@ export default {
     },
     jumpHistory() {
       this.visible = false;
+      console.log("HISTORY", this.HISTORY);
       this.HISTORY.push("/app1");
     },
     jumpHash() {},

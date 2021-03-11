@@ -5,12 +5,12 @@ const LoginPage = () =>
   import(/* webpackChunkName: 'Login' */ "../pages/login");
 
 export default [
-  {
-    path: "/app2",
-    name: "home",
-    component: Template,
-    child: [],
-  },
+  // {
+  //   path: "/app2",
+  //   name: "home",
+  //   component: Template,
+  //   child: [],
+  // },
   {
     path: "/",
     component: Index,
